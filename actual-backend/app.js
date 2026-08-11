@@ -14,7 +14,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/items', async (req, res) => {
+app.get("/items", async (req, res) => {
   const storedItems = await getStoredItems();
    await new Promise((resolve, reject) => setTimeout(() => resolve(), 3000));
   res.json({ items: storedItems });
@@ -40,6 +40,7 @@ app.post('/items', async (req, res) => {
 
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, "0.0.0.0", () => {
+
+app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
