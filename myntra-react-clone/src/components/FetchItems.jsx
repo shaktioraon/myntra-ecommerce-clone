@@ -13,14 +13,22 @@ const FetchItems = () => {
     const signal = controller.signal;
     dispatch(fetchStatusActions.markFetchingStarted());
  const API_URL = "https://myntra-ecommerce-backend.onrender.com";
-
 fetch(`${API_URL}/items`, { signal })
-      .then((res) => res.json())
-      .then(({ items }) => {
-        dispatch(fetchStatusActions.markFetchDone());
-        dispatch(fetchStatusActions.markFetchingEnded());
-        dispatch(itemsActions.addIntialItems(items[0]));
-      });
+  .then((res) => res.json())
+  .then(({ items }) => {
+    dispatch(fetchStatusActions.markFetchDone());
+    dispatch(fetchStatusActions.markFetchingEnded());
+    dispatch(itemsActions.addInitialItems(items[0]));
+  })
+  .catch((error) => {
+    if (error.name !== "AbortError") {
+      console.error("Failed to fetch items:", error);
+      dispatch(fetchStatusActions.markFetchingEnded());
+    }
+  });
+
+
+
     return () => {
       controller.abort();
     };
