@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 import BagItem from "../components/BagItem";
 import BagSummary from "../components/BagSummary";
-import BagMessage from "../components/BagMessage.Jsx";
+
+import BagMessage from "../components/BagMessage.jsx";
 
 const Bag = () => {
   const items = useSelector((store) => store.items);
