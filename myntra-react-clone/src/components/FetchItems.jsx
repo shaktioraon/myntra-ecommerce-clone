@@ -18,7 +18,7 @@ fetch(`${API_URL}/items`, { signal })
   .then(({ items }) => {
     dispatch(fetchStatusActions.markFetchDone());
     dispatch(fetchStatusActions.markFetchingEnded());
-    dispatch(itemsActions.addInitialItems(items[0]));
+   dispatch(itemsActions.addInitialItems(items));
   })
   .catch((error) => {
     if (error.name !== "AbortError") {
